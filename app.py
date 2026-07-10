@@ -79,6 +79,22 @@ st.markdown("""
     color: #6c5a1b;
     font-weight: 600;
 }
+.method-box {
+    background: #f4faf4;
+    border: 1px solid #d6e6d7;
+    padding: 0.95rem 1rem;
+    border-radius: 16px;
+    color: #36513d;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+}
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #214f35;
+    margin-bottom: 0.6rem;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -102,11 +118,23 @@ left, right = st.columns([1, 1.2])
 
 with left:
     st.markdown('<div class="card">', unsafe_allow_html=True)
-    st.markdown("### 실험 조건 선택")
+    st.markdown('<div class="section-title">실험 조건 선택</div>', unsafe_allow_html=True)
 
     cycle = st.radio(
         "관수 주기를 고르세요",
         ["매일 물 주기", "주 2회 물 주기", "물을 주지 않음"]
+    )
+
+    st.markdown(
+        """
+        <div class="method-box">
+        <b>관수 방식 설명</b><br>
+        - <b>두상관수</b>: 위에서 흙 쪽으로 물을 주는 방법<br>
+        - <b>저면관수</b>: 화분을 물에 담가 아래에서 물을 흡수하게 하는 방법<br>
+        - <b>관수 X</b>: 물을 주지 않는 조건
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
     if cycle == "주 2회 물 주기":
@@ -138,14 +166,9 @@ with left:
     else:
         method = st.radio(
             "물 주는 방식을 고르세요",
-            ["두상관수", "저면관수", "관수 X"],
+            ["두상관수", "저면관수"],
             index=0
         )
-        if method == "관수 X":
-            st.markdown(
-                '<div class="rule-box">매일 물 주기와 관수 X는 서로 맞지 않는 선택이므로, 결과 해석 시 참고가 필요합니다.</div>',
-                unsafe_allow_html=True
-            )
 
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown('<span class="info-chip">물의 양: 1회 120mL</span>', unsafe_allow_html=True)
@@ -184,7 +207,7 @@ with right:
         detail = "매일 관수는 주 2회 관수보다 잎 색이 덜 건강했고, 두상관수는 상대적으로 불리했습니다."
         explain = "잦은 관수는 은방울꽃에 과한 수분 스트레스를 줄 수 있습니다."
 
-    elif cycle == "물을 주지 않음" or method == "관수 X":
+    elif cycle == "물을 주지 않음":
         leaf_color = "#FFD54F"
         title = "가장 스트레스가 큰 상태"
         grade = "비추천"
@@ -255,4 +278,11 @@ st.markdown("""
 - 결과 지표: 잎 색 변화
 """)
 
-st.info("이 웹앱은 실제 실험에서 관찰한 잎 색 변화를 바탕으로 만든 발표용 체험 페이지입니다.")
+st.info(
+    """
+이 웹앱은 실제 실험에서 관찰한 잎 색 변화를 바탕으로 만든 발표용 체험 페이지입니다.
+
+두상관수는 위에서 흙 쪽으로 물을 주는 방법이고, 저면관수는 화분을 물에 담가 아래에서 물을 흡수하게 하는 방법입니다.
+""",
+    icon="ℹ️"
+)
