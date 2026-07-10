@@ -95,16 +95,27 @@ st.markdown("""
     color: #214f35;
     margin-bottom: 0.6rem;
 }
+.top-box {
+    background: linear-gradient(135deg, #f7fbf7, #eef7ef);
+    border: 1px solid #dbe8dc;
+    border-radius: 24px;
+    padding: 1.4rem;
+    margin-bottom: 1rem;
+}
 </style>
 """, unsafe_allow_html=True)
 
-
+st.markdown('<div class="top-box">', unsafe_allow_html=True)
 st.markdown('<div class="main-title">은방울꽃 관수 실험 체험</div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="sub-text">관수 주기와 관수 방식을 선택하고, 잎 색 변화 중심의 결과를 비교해 보세요.</div>',
     unsafe_allow_html=True
 )
-
+st.markdown(
+    '<span class="info-chip">발표용 체험 웹앱</span><span class="info-chip">실험 결과 기반</span><span class="info-chip">은방울꽃 잎 색 변화</span>',
+    unsafe_allow_html=True
+)
+st.markdown('</div>', unsafe_allow_html=True)
 
 left, right = st.columns([1, 1.2])
 
