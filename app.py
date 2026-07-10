@@ -141,7 +141,7 @@ with left:
         method = "저면관수"
         st.radio(
             "물 주는 방식을 고르세요",
-            ["저면관수", "관수 X"],
+            ["두상관수", "저면관수", "관수 X"],
             index=0,
             disabled=True
         )
