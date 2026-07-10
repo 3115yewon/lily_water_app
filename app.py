@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="은방울꽃 관수 실험 체험",
-    page_icon="🌱",
+    page_icon="🌼",
     layout="wide"
 )
 
@@ -117,7 +117,10 @@ with left:
             index=0,
             disabled=True
         )
-        st.markdown('<div class="rule-box">주 2회 물 주기 조건에서는 관수 방식이 저면관수로 고정됩니다.</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="rule-box">주 2회 물 주기 조건에서는 관수 방식이 저면관수로 고정됩니다.</div>',
+            unsafe_allow_html=True
+        )
 
     elif cycle == "물을 주지 않음":
         method = "관수 X"
@@ -127,7 +130,10 @@ with left:
             index=2,
             disabled=True
         )
-        st.markdown('<div class="rule-box">물을 주지 않음 조건에서는 관수 방식이 자동으로 관수 X로 고정됩니다.</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="rule-box">물을 주지 않음 조건에서는 관수 방식이 자동으로 관수 X로 고정됩니다.</div>',
+            unsafe_allow_html=True
+        )
 
     else:
         method = st.radio(
@@ -136,12 +142,18 @@ with left:
             index=0
         )
         if method == "관수 X":
-            st.markdown('<div class="rule-box">매일 물 주기와 관수 X는 서로 맞지 않는 선택이므로, 결과 해석 시 참고가 필요합니다.</div>', unsafe_allow_html=True)
+            st.markdown(
+                '<div class="rule-box">매일 물 주기와 관수 X는 서로 맞지 않는 선택이므로, 결과 해석 시 참고가 필요합니다.</div>',
+                unsafe_allow_html=True
+            )
 
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown('<span class="info-chip">물의 양: 1회 120mL</span>', unsafe_allow_html=True)
     st.markdown('<span class="info-chip">결과 지표: 잎 색 변화</span>', unsafe_allow_html=True)
-    st.markdown('<p class="small-note">실험에서는 관수 주기와 방식에 따라 은방울꽃 잎의 건강 상태 차이를 비교했습니다.</p>', unsafe_allow_html=True)
+    st.markdown(
+        '<p class="small-note">실험에서는 관수 주기와 방식에 따라 은방울꽃 잎의 건강 상태 차이를 비교했습니다.</p>',
+        unsafe_allow_html=True
+    )
     st.markdown('</div>', unsafe_allow_html=True)
 
 with right:
@@ -163,7 +175,7 @@ with right:
         detail = "매일 관수 조건에서는 저면관수가 두상관수보다 더 건강한 잎 색을 보였습니다."
         explain = "같은 물 양이어도, 아래에서 흡수되는 방식이 스트레스를 조금 덜 줄 수 있습니다."
 
-    elif cycle == "매일 물 주기" and method == "위로 물 주기":
+    elif cycle == "매일 물 주기" and method == "두상관수":
         leaf_color = "#DCE775"
         title = "다소 약해진 상태"
         grade = "주의"
@@ -210,15 +222,37 @@ with right:
     )
 
     c1, c2, c3 = st.columns(3)
+
     with c1:
         st.markdown(
             '<div class="compare-box" style="background:#4CAF50;">건강함<br><span style="font-size:1.6rem;">●</span></div>',
             unsafe_allow_html=True
         )
+
     with c2:
         st.markdown(
             '<div class="compare-box" style="background:#DCE775;">보통<br><span style="font-size:1.6rem;">●</span></div>',
             unsafe_allow_html=True
         )
+
     with c3:
-        
+        st.markdown(
+            '<div class="compare-box" style="background:#FFD54F;">나쁨<br><span style="font-size:1.6rem;">●</span></div>',
+            unsafe_allow_html=True
+        )
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown(f"**해설:** {detail}")
+    st.markdown(explain)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+st.markdown("### 실험 핵심 정리")
+st.markdown("""
+- 실험 대상: 은방울꽃
+- 관수 주기: 매일 / 주 2회 / 물 주지 않음
+- 관수 방식: 두상관수 / 저면관수 / 관수 X
+- 물의 양: 1회 120mL 고정
+- 결과 지표: 잎 색 변화
+""")
+
+st.info("이 웹앱은 실제 실험에서 관찰한 잎 색 변화를 바탕으로 만든 발표용 체험 페이지입니다.")
